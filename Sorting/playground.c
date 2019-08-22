@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "sort.h"
 
 int cmp_int(const void *ptr1, const void *ptr2)
