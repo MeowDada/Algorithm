@@ -11,7 +11,7 @@ LIBSORT_OBJS          := $(addsuffix .so,$(LIBSORT_NAME))
 PLAYGROUND_PROG       := playground
 PLAYGROUND_SRCS       := playground.c
 PLAYGROUND_OBJS       := $(patsubst %.c,%.o,$(PLAYGROUND_SRCS))
-PLAYGROUND_LIBS       := libsort
+PLAYGROUND_LIBS       := sort
 
 
 all:build_libsort build_playground
