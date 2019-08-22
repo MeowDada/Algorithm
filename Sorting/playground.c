@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "sort.h"
 
+/* return true if ptr1 is larger than ptr2 */
 int cmp_int(const void *ptr1, const void *ptr2)
 {
     return *(int *)ptr1 > *(int *)ptr2;
