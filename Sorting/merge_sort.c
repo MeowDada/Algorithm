@@ -46,7 +46,9 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
             l++;
         }
         else {
-            void *val = at(r);
+            void *val = malloc(size);
+            element1 = at(r);
+            assign(val, element1, size);
             size_t idx = r;
             while (idx != l) {
                 element1 = at(idx);
@@ -59,6 +61,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
             l++;
             m++;
             r++;
+            free(val);
         }
     }
 }
