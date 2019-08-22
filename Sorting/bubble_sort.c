@@ -17,7 +17,7 @@ static inline void swap(void *ptr1, void *ptr2, size_t size)
 
 void bubble_sort(void *base, size_t num, size_t size, int(*cmp)(const void *, const void *))
 {
-    if (num == 0)
+    if (num == 0 || num == 1)
         return;
 
     int flag = true;
