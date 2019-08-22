@@ -14,16 +14,13 @@ PLAYGROUND_OBJS       := $(patsubst %.c,%.o,$(PLAYGROUND_SRCS))
 PLAYGROUND_LIBS       := libsort
 
 
-all:$(LIBSORT_OBJS) $(PLAYGROUND_PROG)
+all:build_libsort build_playground
 
-$(LIBSORT_OBJS):$(LIBSORT_SRCS)
-	$(CC) -shared -o $(LIBSORT_PATH)/$@ -fPIC $^ 
+build_libsort:$(LIBSORT_SRCS)
+	$(CC) -shared -o $(LIBSORT_PATH)/$(LIBSORT_OBJS) -fPIC $^
 
-$(PLAYGROUND_PROG):$(PLAYGROUND_LIBS) $(PLAYGROUND_OBJS)
-
-$(PLAYGROUND_LIBS):$(LIBSORT_OBJS)
-
-$(PLAYGROUND_OBJS):$(PLAYGROUND_SRCS)
-	$(CC) $(CFLAGS) -c $^
+build_playground:
+	$(CC) $(CFLAGS) -c $(PLAYGROUND_SRCS)
+	$(CC) $(CFLAGS) -o $(PLAYGROUND_PROG) $(PLAYGROUND_OBJS) -L $(LIBSORT_PATH) $(addprefix -l,$(PLAYGROUND_LIBS))
 
 clean:
