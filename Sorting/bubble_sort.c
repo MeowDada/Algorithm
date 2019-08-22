@@ -24,8 +24,8 @@ void bubble_sort(void *base, size_t num, size_t size, int(*cmp)(const void *, co
     for (size_t i = 0; i < num - 1 && flag ; i++) {
         flag = false;
         for (size_t j = 0; j < num - i - 1; j++) {
-            element1 = at(i);
-            element2 = at(j);
+            element1 = at(j);
+            element2 = at(j+1);
             if ((*cmp)(element1, element2)) {
                 swap(element1, element2, size);
                 flag = true;
