@@ -20,10 +20,9 @@ void bubble_sort(void *base, size_t num, size_t size, int(*cmp)(const void *, co
     void *element2 = NULL;
 
     for (size_t i = 0; i < size; i++) {
-        for (size_t j = i; j < size; i) {
+        for (size_t j = i; j < size; j++) {
             element1 = at(i);
             element2 = at(j);
-            printf("%d\n", *(int *)element1);
             if ((*cmp)(element1, element2))
                 swap(element1, element2, size);
         }
