@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 {
     int arr[] = {5,2,1,7,8,12,3,5,7,4,2,3,0,-4,2,1};
 
-    sort_method(SORT_METHOD_BUBBLE_SORT);
+    sort_method(SORT_METHOD_SELECTION_SORT);
     sort(arr, 16, sizeof(int), cmp_int);
 
     for(int i = 0; i < 16; i++) {
