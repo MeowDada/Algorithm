@@ -14,7 +14,7 @@ PLAYGROUND_OBJS       := $(patsubst %.c,%.o,$(PLAYGROUND_SRCS))
 PLAYGROUND_LIBS       := libsort
 
 
-all:$(PLAYGROUND_PROG)
+all:$(LIBSORT_OBJS) $(PLAYGROUND_PROG)
 
 $(LIBSORT_OBJS):$(LIBSORT_SRCS)
 	$(CC) -shared -o $(LIBSORT_PATH)/$@ -fPIC $^ 
