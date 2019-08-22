@@ -7,7 +7,6 @@
 #define at(i)  (void *)((char *)base + (i)*size)
 #define next(ptr) (ptr = (char *)ptr + size;)
 
-
 static inline void swap(void *ptr1, void *ptr2, size_t size)
 {
     char buf[size];
@@ -33,22 +32,30 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
     size_t m = mid;
     size_t r = m+1;
 
+    void *element1 = at(m);
+    void *element2 = at(r);
+
     /* if already sorted */
-    if ((*cmp)(at(m), at(r)))
+    if ((*cmp)(element1, element2))
         return;
 
     while (l <= mid && r <= end) {
-        if ((*cmp)(at(l), at(r))) {
+        element1 = at(l);
+        element2 = at(r);
+        if ((*cmp)(element1, element2)) {
             l++;
         }
         else {
             void *val = at(r);
             size_t idx = r;
             while (idx != l) {
-                assign(at(idx), at(idx-1), size);
+                element1 = at(idx);
+                element2 = at(idx-1);
+                assign(element1, element2, size);
                 idx--;
             }
-            assign(at(l), val, size);
+            element1 = at(l);
+            assign(element1, val, size);
             l++;
             m++;
             r++;
