@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "sort.h"
 
 #define at(i)  (void *)((char *)base + (i)*size);
@@ -16,15 +17,19 @@ static inline void swap(void *ptr1, void *ptr2, size_t size)
 
 void bubble_sort(void *base, size_t num, size_t size, int(*cmp)(const void *, const void *))
 {
+    int flag = true;
     void *element1 = NULL;
     void *element2 = NULL;
 
-    for (size_t i = 0; i < size; i++) {
-        for (size_t j = 0; j < size; j++) {
+    for (size_t i = 0; i < num - 1 && flag ; i++) {
+        flag = false;
+        for (size_t j = 0; j < num - i - 1; j++) {
             element1 = at(i);
             element2 = at(j);
-            if ((*cmp)(element1, element2))
+            if ((*cmp)(element1, element2)) {
                 swap(element1, element2, size);
+                flag = true;
+            }
         }
     }
 }
