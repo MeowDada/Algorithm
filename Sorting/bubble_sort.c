@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "sort.h"
@@ -22,6 +23,7 @@ void bubble_sort(void *base, size_t num, size_t size, int(*cmp)(const void *, co
         for (size_t j = i; j < size; i) {
             element1 = at(i);
             element2 = at(j);
+            printf("%d\n", *(int *)element1);
             if ((*cmp)(element1, element2))
                 swap(element1, element2, size);
         }
