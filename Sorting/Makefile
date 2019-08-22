@@ -6,7 +6,7 @@ CFLAGS                := -Wall -g -std=gnu99
 LIBSORT_PATH          := ../lib
 LIBSORT_NAME          := libsort
 LIBSORT_SRCS          := sort.c bubble_sort.c
-LIBSORT_OBJS          := $(addsuffix .so,$(SHARED_LIBRARIES_NAME))
+LIBSORT_OBJS          := $(addsuffix .so,$(LIBSORT_NAME))
 
 PLAYGROUND_PROG       := playground
 PLAYGROUND_SRCS       := playground.c
