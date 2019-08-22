@@ -5,6 +5,7 @@
 const static void (*_sort_method_table[])(void *, size_t, size_t, int(*)(const void *, const void *)) = {
     bubble_sort,
     selection_sort,
+    merge_sort,
 };
 static void (*_sort_method)(void *, size_t, size_t, int(*)(const void *, const void *)) = NULL;
 
