@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include "sort.h"
 
 #define at(i)  (void *)((char *)base + (i)*size);
