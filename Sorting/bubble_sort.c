@@ -20,7 +20,7 @@ void bubble_sort(void *base, size_t num, size_t size, int(*cmp)(const void *, co
     void *element2 = NULL;
 
     for (size_t i = 0; i < size; i++) {
-        for (size_t j = i; j < size; j++) {
+        for (size_t j = 0; j < size; j++) {
             element1 = at(i);
             element2 = at(j);
             if ((*cmp)(element1, element2))
