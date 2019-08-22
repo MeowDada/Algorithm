@@ -39,7 +39,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
     if ((*cmp)(element1, element2))
         return;
 
-    while (l <= mid && r <= end) {
+    while (l <= m && r <= end) {
         element1 = at(l);
         element2 = at(r);
         if ((*cmp)(element1, element2)) {
