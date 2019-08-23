@@ -46,7 +46,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
             printf(" %d", *(int *)offset(base, i, size));
         }
         else if (i == mid+1) {
-            printf("][ %d", *(int *)offset(base, i, size));
+            printf("][%d", *(int *)offset(base, i, size));
             if (i == end) {
                 printf("]\n");
             }
@@ -58,15 +58,6 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
             printf(" %d]\n", *(int *)offset(base, i, size));
         }
     }
-    printf("<left> =");
-    for(int i = 0; i < len_l ;i++) {
-        printf(" %d", *(int *)offset(left_arr, i, size));
-    }
-    printf("\n<right> = ");
-    for(int i = 0; i < len_r ;i++) {
-        printf(" %d", *(int *)offset(right_arr, i, size));
-    }
-    printf("\n");
 
     size_t l = 0;
     size_t r = 0;
