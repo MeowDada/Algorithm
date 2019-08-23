@@ -38,7 +38,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
     memcpy(left_arr, offset(base, start, size), len_l*size);
     memcpy(right_arr, offset(base, mid+1, size), len_r*size);
 
-    printf("[left ]: ")
+    printf("[left ]: ");
     for (int i = 0; i < len_l ; i++) {
         printf("%d ", *(int *)offset(left_arr, i, size));
     }
