@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include "sort.h"
 
-/* return true if ptr1 is larger than ptr2 */
+/* descending oreder */
 int cmp_int(const void *ptr1, const void *ptr2)
 {
-    return *(int *)ptr1 > *(int *)ptr2;
+    if (*(int *)ptr1 < *(int *)ptr2) return -1;
+    if (*(int *)ptr1 == *(int *)ptr2) return 0;
+    if (*(int *)ptr1 > *(int *)ptr2) return 1;
 }
 
 int main(int argc, char **argv)

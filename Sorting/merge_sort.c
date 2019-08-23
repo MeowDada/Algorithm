@@ -5,7 +5,14 @@
 #include "sort.h"
 
 #define at(i)  (void *)((char *)base + (i)*size)
-#define next(ptr) (ptr = (char *)ptr + size;)
+#define next(ptr) (void *)((char *)ptr + size;)
+
+static inline void *offset(void *ptr, size_t offset, size_t size)
+{
+    char *tmp = (char *)ptr;
+    tmp += offset*size;
+    return (void *)tmp;
+}
 
 static inline void swap(void *ptr1, void *ptr2, size_t size)
 {
@@ -20,50 +27,62 @@ static inline void assign(void *dest, void *src, size_t size)
     memcpy(dest, src, size);
 }
 
-/**
- * array: <----------array--------->
- *        <-----l-----><-----r----->
- * indexL .l............r...........
- */
 static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size,
     int (*cmp)(const void *, const void *))
 {
-    size_t l = start;
-    size_t m = mid;
-    size_t r = m+1;
-
-    void *element1 = at(m);
-    void *element2 = at(r);
-
-    /* if already sorted */
-    if ((*cmp)(element1, element2))
+    size_t num = end - start + 1;
+    if (num == 0 || num == 1)
         return;
 
-    while (l <= m && r <= end) {
-        element1 = at(l);
-        element2 = at(r);
-        if ((*cmp)(element1, element2)) {
+    if (num == 2) {
+        if ((*cmp)(offset(base, start, size), offset(base, end, size))==SORT_FORMER_ELEMENT_IS_SMALLER)
+        {
+            swap(offset(base, start, size), offset(base, end, size), size);
+            return;
+        }
+        return;
+    }
+    
+    void *temp = calloc(num, size);
+    void *tptr = temp;
+    size_t idx = 0;
+
+    size_t l = start;
+    size_t r = mid + 1;
+
+    void *lptr = offset(base, l, size);
+    void *rptr = offset(base, r, size);
+
+    while (l <= mid+1 && r <= end) {
+        lptr = offset(base, l, size);
+        rptr = offset(base, r, size);
+        int cmp_val = (*cmp)(lptr, rptr);
+        if (cmp_val == SORT_FORMER_ELEMENT_IS_SMALLER ||
+            cmp_val == SORT_FORMER_ELEMENT_IS_EQUAL) {
+            memcpy(tptr, lptr, size);
+            idx++;
             l++;
+            tptr = offset(temp, idx, size);
         }
         else {
-            void *val = malloc(size);
-            element1 = at(r);
-            assign(val, element1, size);
-            size_t idx = r;
-            while (idx != l) {
-                element1 = at(idx);
-                element2 = at(idx-1);
-                assign(element1, element2, size);
-                idx--;
-            }
-            element1 = at(l);
-            assign(element1, val, size);
-            l++;
-            m++;
+            memcpy(tptr, rptr, size);
+            idx++;
             r++;
-            free(val);
+            tptr = offset(temp, idx, size);
         }
     }
+
+    if (l != mid+1) {
+        size_t num_to_copy = (mid+1) - l;
+        memcpy(offset(base, start+idx, size), tptr, num_to_copy*size);
+    }
+    else if (r != end) {
+        size_t num_to_copy = end - r + 1;
+        memcpy(offset(base, start+idx, size), tptr, num_to_copy*size);
+    }
+
+    memcpy(offset(base, start, size), temp, num*size);
+    free(temp);
 }
 
 static void _merge_sort(void *base, size_t start, size_t end, size_t size,
@@ -80,4 +99,9 @@ static void _merge_sort(void *base, size_t start, size_t end, size_t size,
 void merge_sort(void *base, size_t num, size_t size, int (*cmp)(const void *, const void *))
 {
     _merge_sort(base, 0, num-1, size, cmp);
+}
+
+void in_place_merge_sort(void *base, size_t num, size_t size, int (*cmp)(const void *, const void *))
+{
+
 }

@@ -29,7 +29,7 @@ void bubble_sort(void *base, size_t num, size_t size, int(*cmp)(const void *, co
         for (size_t j = 0; j < num - i - 1; j++) {
             element1 = at(j);
             element2 = at(j+1);
-            if ((*cmp)(element1, element2)) {
+            if ((*cmp)(element1, element2)==SORT_FORMER_ELEMENT_IS_LARGER) {
                 swap(element1, element2, size);
                 flag = true;
             }

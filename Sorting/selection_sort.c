@@ -29,7 +29,7 @@ void selection_sort(void *base, size_t num, size_t size, int(*cmp)(const void *,
         element_head = at(i);
         for (size_t j = i+1 ; j < num ; j++) {
             element_to_cmp = at(j);
-            if ((*cmp)(element_small, element_to_cmp)) {
+            if ((*cmp)(element_small, element_to_cmp)==SORT_FORMER_ELEMENT_IS_LARGER) {
                 element_small = at(j);
             }
         }
