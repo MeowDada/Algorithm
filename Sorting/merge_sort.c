@@ -34,9 +34,16 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
     size_t len_r = end-mid;
 
     void *left_arr  = calloc(len_l, size);
-    void *right_arr = calloc(len_r,size);
+    void *right_arr = calloc(len_r, size);
     memcpy(left_arr, offset(base, start, size), len_l*size);
     memcpy(right_arr, offset(base, mid+1, size), len_r*size);
+
+    for (int i = 0; i < len_l ; i++) {
+        printf("%d ", *(int *)offset(left_arr, i, size));
+    }
+    for (int i = 0; i < len_r ; i++) {
+        printf("%d ", *(int *)offset(right_arr, i, size));
+    }
 
     size_t l = 0;
     size_t r = 0;
@@ -65,6 +72,8 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
     else if (r != len_r) {
         memcpy(offset(base, idx, size), offset(right_arr, r, size), (len_r-r)*size);
     }
+    free(left_arr);
+    free(right_arr);
 }
 
 static void _merge_sort(void *base, size_t start, size_t end, size_t size,
