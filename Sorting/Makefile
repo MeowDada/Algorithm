@@ -9,10 +9,9 @@ LIBSORT_SRCS          := sort.c bubble_sort.c selection_sort.c merge_sort.c
 LIBSORT_OBJS          := $(addsuffix .so,$(LIBSORT_NAME))
 
 PLAYGROUND_PROG       := playground
-PLAYGROUND_SRCS       := playground.c
+PLAYGROUND_SRCS       := playground.c sort_unit_test.c
 PLAYGROUND_OBJS       := $(patsubst %.c,%.o,$(PLAYGROUND_SRCS))
 PLAYGROUND_LIBS       := sort
-
 
 all:build_libsort build_playground
 
