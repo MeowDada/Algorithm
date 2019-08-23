@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include "sort_unit_test.h"
 
-#define YELLOW "\033[0;33m]"
-#define RED    "\033[0;31m]"
-#define GREEN  "\033[0;32m]"
-#define RESET  "\033[0m]"
+#define YELLOW "\033[0;33m"
+#define RED    "\033[0;31m"
+#define GREEN  "\033[0;32m"
+#define RESET  "\033[0m"
 
 int sort_test_int_arr(int *test, int *truth, int len)
 {
@@ -28,27 +28,19 @@ fail:
     printf("[input]:");
     for (int i = 0; i < len; i++) {
         if(flag[i]) {
-            printf("%s", RED);
-            printf(" %d", test[i]);
-            printf("%s", RESET);
+            printf(" %s%d%s", RED, test[i], RESET);
         }
         else {
-            printf("%s", GREEN);
-            printf(" %d", test[i]);
-            printf("%s", RESET);
+            printf(" %s%d%s", GREEN, test[i], RESET);
         }
     }
     printf("\n[truth]:");
     for (int i = 0; i < len; i++) {
         if(flag[i]) {
-            printf("%s", YELLOW);
-            printf(" %d", truth[i]);
-            printf("%s", RESET);
+            printf(" %s%d%s", YELLOW, truth[i], RESET);
         }
         else {
-            printf("%s", GREEN);
-            printf(" %d", truth[i]);
-            printf("%s", RESET);
+            printf(" %s%d%s", GREEN, truth[i], RESET);
         }
     }
     printf("\n");
