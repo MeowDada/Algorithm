@@ -7,6 +7,7 @@ int cmp_int(const void *ptr1, const void *ptr2)
     if (*(int *)ptr1 < *(int *)ptr2) return -1;
     if (*(int *)ptr1 == *(int *)ptr2) return 0;
     if (*(int *)ptr1 > *(int *)ptr2) return 1;
+    return 0;
 }
 
 int main(int argc, char **argv)
