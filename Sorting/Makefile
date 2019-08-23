@@ -13,8 +13,8 @@ PLAYGROUND_SRCS       := playground.c sort_unit_test.c
 PLAYGROUND_OBJS       := $(patsubst %.c,%.o,$(PLAYGROUND_SRCS))
 PLAYGROUND_LIBS       := sort
 
-SORT_UNIT_TEST_PROG   := sort_unit_test
-SORT_UNIT_TEST_SRCS   := sort_unit_test.c
+SORT_UNIT_TEST_PROG   := sort_unit_test_main
+SORT_UNIT_TEST_SRCS   := sort_unit_test_main.c sort_unit_test.c
 SORT_UNIT_TEST_OBJS   := $(patsubst %.c,%.o,$(SORT_UNIT_TEST_SRCS))
 SORT_UNIT_TEST_LIBS   := sort
 
