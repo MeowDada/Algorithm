@@ -60,7 +60,8 @@ static int special_case(void)
     /* even-length input case */
     int arr_even[] = {-5,-3,7,5,-2,-2,-2,-2,0,4,1,8};
     int tru_even[] = {-5,-3,-2,-2,-2,-2,0,1,4,5,7,8};
-
+    total_test++;
+    
     sort(arr_even, 12, sizeof(int), cmp_int);
     if(sort_test_int_arr(arr_even, tru_even, 12)==0)
         passed++;
