@@ -1,9 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "sort_unit_test.h"
 
-#define YELLOW "\033[0;33m"
-#define RED    "\033[0;31m"
-#define GREEN  "\033[0;32m"
+#define YELLOW "\033[1;33m"
+#define RED    "\033[1;31m"
+#define GREEN  "\033[1;32m"
 #define RESET  "\033[0m"
 
 int sort_test_int_arr(int *test, int *truth, int len)

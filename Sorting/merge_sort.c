@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include "sort.h"
 
+#define DEBUG_MERGE_SORT 0
+
 #define at(i)  (void *)((char *)base + (i)*size)
 #define next(ptr) (void *)((char *)ptr + size;)
 
@@ -40,6 +42,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
     memcpy(left_arr, base_to_left_arr, len_l*size);
     memcpy(right_arr, base_to_right_arr, len_r*size);
 
+#if DEBUG_MERGE_SORT
     for (int i = start ; i <= end ; i++) {
         if (i == start) {
             printf("[%d", *(int *)offset(base, i, size));
@@ -60,6 +63,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
             printf(" %d]\n", *(int *)offset(base, i, size));
         }
     }
+#endif
 
     size_t l = 0;
     size_t r = 0;
@@ -89,11 +93,13 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
         memcpy(offset(base, idx, size), offset(right_arr, r, size), (len_r-r)*size);
     }
 
+#if DEBUG_MERGE_SORT
     printf("[MERGE] =");
     for (int i = start ; i <= end ; i++) {
         printf(" %d", *(int *)offset(base, i, size));
     }
     printf("\n");
+#endif
 
     free(left_arr);
     free(right_arr);
