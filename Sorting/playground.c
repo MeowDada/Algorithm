@@ -14,7 +14,7 @@ int cmp_int(const void *ptr1, const void *ptr2)
 int main(int argc, char **argv)
 {
     int arr[] = {5,2,1,7,8,12,3,5,7,4,2,3,0,-4,2,1};
-    int tru[] = {-4,0,1,1,2,2,2,3,3,4,5,5,7,7,8,11};
+    int tru[] = {-4,0,1,1,2,2,2,3,3,4,5,5,7,7,8,12};
 
     sort_method(SORT_METHOD_MERGE_SORT);
     sort(arr, 16, sizeof(int), cmp_int);

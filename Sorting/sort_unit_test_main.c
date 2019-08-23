@@ -83,6 +83,31 @@ int main(int argc, char **argv)
     passed += boundary_case();
     passed += special_case();
     passed += standard_case();
+    if (passed == total_test) {
+        printf("[UNIT TEST]: Selection sort passed\n");
+    }
+    passed     = 0;
+    total_test = 0;
 
-    return passed == total_test ? EXIT_SUCCESS : EXIT_FAILURE;
+    sort_method(SORT_METHOD_BUBBLE_SORT);
+    passed += boundary_case();
+    passed += special_case();
+    passed += standard_case();
+    if (passed == total_test) {
+        printf("[UNIT TEST]: Bubble sort passed\n");
+    }
+    passed     = 0;
+    total_test = 0;
+
+    sort_method(SORT_METHOD_MERGE_SORT);
+    passed += boundary_case();
+    passed += special_case();
+    passed += standard_case();
+    if (passed == total_test) {
+        printf("[UNIT TEST]: merge sort passed\n");
+    }
+    passed     = 0;
+    total_test = 0;
+
+    return 0;
 }
