@@ -86,6 +86,13 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
     else if (r != len_r) {
         memcpy(offset(base, idx, size), offset(right_arr, r, size), (len_r-r)*size);
     }
+
+    printf("[MERGE:] =");
+    for (int i = start ; i <= end ; i++) {
+        printf(" %d", *(int *)offset(base, i, size));
+    }
+    printf("\n");
+
     free(left_arr);
     free(right_arr);
 }
