@@ -65,7 +65,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
             memcpy(offset(base, i, size), elem_r, size);
             r++;
         }
-        idx = i;
+        idx++;
         if (l == len_l || r == len_r)
             break;
     }
