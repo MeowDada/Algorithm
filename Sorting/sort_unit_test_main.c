@@ -108,7 +108,7 @@ static int random_case(int num, int range)
         memcpy(tru, arr, len*sizeof(int));
         qsort(tru, len, sizeof(int), cmp_int);
         sort(arr, len, sizeof(int), cmp_int);
-        if (sort_test_int_arr(arr, tru, len))
+        if (sort_test_int_arr(arr, tru, len)==0)
             passed++;
         
         free(arr);
