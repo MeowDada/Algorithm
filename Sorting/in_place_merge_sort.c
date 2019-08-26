@@ -62,5 +62,5 @@ static void _merge_sort(void *base, size_t start, size_t end,
 
 void in_place_merge_sort(void *base, size_t num, size_t size, int (*cmp)(const void *, const void *))
 {
-    merge_sort(base, 0, num-1, size, cmp);
+    _merge_sort(base, 0, num-1, size, cmp);
 }
