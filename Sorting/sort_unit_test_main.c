@@ -101,8 +101,10 @@ static int random_case(int num, int range)
         int len = rand() % (range-1) + 1;
         int *arr = calloc(len, sizeof(int));
         int *tru = calloc(len, sizeof(int));
-        for (int j = 0; j < len ; j++)
-            memcpy(arr+j, (void *)rand(), sizeof(int));
+        for (int j = 0; j < len ; j++) {
+            int content = rand();
+            memcpy(arr+j, &content, sizeof(int));
+        }
         memcpy(tru, arr, len*sizeof(int));
         qsort(tru, len, sizeof(int), cmp_int);
         sort(arr, len, sizeof(int), cmp_int);
