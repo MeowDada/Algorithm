@@ -110,5 +110,15 @@ int main(int argc, char **argv)
     passed     = 0;
     total_test = 0;
 
+    sort_method(SORT_METHOD_IN_PLACE_MERGE_SORT);
+    passed += boundary_case();
+    passed += special_case();
+    passed += standard_case();
+    if (passed == total_test) {
+        printf("[UNIT TEST]: In-place merge sort passed\n");
+    }
+    passed     = 0;
+    total_test = 0;
+
     return 0;
 }
