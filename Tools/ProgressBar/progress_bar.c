@@ -91,6 +91,14 @@ void progress_bar_destroy(progress_bar_t *bar)
     free(bar);
 }
 
+void progress_bar_load_progress(progress_bar_t *bar, progress_t *progress)
+{
+    if (!bar || !progress)
+        return;
+    
+    bar->progress = progress;
+}
+
 void progress_bar_show_progress(progress_bar_t *bar)
 {
     if (!bar) {

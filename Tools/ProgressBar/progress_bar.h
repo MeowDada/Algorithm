@@ -26,6 +26,7 @@ typedef struct progress_bar_t {
 
 progress_bar_t *progress_bar_create(void);
 void            progress_bar_setup(progress_bar_t *, progress_bar_config_t *);
+void            progress_bar_load_progress(progress_bar_t *, progress_t *);
 void            progress_bar_destroy(progress_bar_t *);
 void            progress_bar_show_progress(progress_bar_t *);
 

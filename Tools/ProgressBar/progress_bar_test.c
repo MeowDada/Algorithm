@@ -11,6 +11,9 @@ int main(int argc, char **argv)
     /* create a progess */
     progress_t *progess = progress_create(NULL);
 
+    /* load the progress */
+    progress_bar_load_progress(bar, progess);
+
     /* main loop */
     int current = 0;
     int target  = 100;
