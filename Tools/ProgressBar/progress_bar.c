@@ -126,9 +126,8 @@ void progress_bar_show_progress(progress_bar_t *bar)
         }
     }
 
-    fprintf(stdout, "\b%c[2k\r%c%s%c\n", 27,
-                                    bar->config->bar_start_char, 
-                                    bar->buffer,
-                                    bar->config->bar_end_char);
+    fprintf(stdout, "\r%c%s%c", bar->config->bar_start_char, 
+                                bar->buffer,
+                                bar->config->bar_end_char);
     fflush(stdout);
 }
