@@ -44,7 +44,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
             l++;
             r++;
         }
-        if (l == r || r > end)
+        if (start+l == mid+1+r || mid+1+r > end)
             break;
     }
 }
