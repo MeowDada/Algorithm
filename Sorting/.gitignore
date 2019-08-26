@@ -1,0 +1,5 @@
+# exclude VS Code workspace configuration file
+*.code-workspace
+
+# exclude compiled shared object
+/lib/*.so

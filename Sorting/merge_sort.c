@@ -73,7 +73,8 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
         void *elem_l = offset(left_arr, l, size);
         void *elem_r = offset(right_arr, r, size);
         int cmpval = (*cmp)(elem_l, elem_r);
-        if (cmpval == SORT_FORMER_ELEMENT_IS_SMALLER) {
+        if (cmpval == SORT_FORMER_ELEMENT_IS_SMALLER ||
+            cmpval == SORT_FORMER_ELEMENT_IS_EQUAL) {
             memcpy(offset(base, i, size), elem_l, size);
             l++;
         }
@@ -119,9 +120,4 @@ static void _merge_sort(void *base, size_t start, size_t end, size_t size,
 void merge_sort(void *base, size_t num, size_t size, int (*cmp)(const void *, const void *))
 {
     _merge_sort(base, 0, num-1, size, cmp);
-}
-
-void in_place_merge_sort(void *base, size_t num, size_t size, int (*cmp)(const void *, const void *))
-{
-
 }
