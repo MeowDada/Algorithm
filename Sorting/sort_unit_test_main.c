@@ -102,7 +102,7 @@ static int random_case(int num, int range)
         int *arr = calloc(len, sizeof(int));
         int *tru = calloc(len, sizeof(int));
         for (int j = 0; j < len ; j++)
-            memcpy(arr+j, rand(), sizeof(int));
+            memcpy(arr+j, (void *)rand(), sizeof(int));
         memcpy(tru, arr, len*sizeof(int));
         qsort(tru, len, sizeof(int), cmp_int);
         sort(arr, len, sizeof(int), cmp_int);
