@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "sort.h"
 #include "sort_unit_test.h"
+
+#define RANDOM_CASE_NUM 128
+#define RANDOM_CASE_LEN 1000 
 
 static int total_test = 0;
 
@@ -85,6 +89,30 @@ static int standard_case(void)
     return passed;
 }
 
+static int random_case(int num, int range)
+{
+    srand(time(NULL));
+
+    int passed = 0;
+
+    total_test += num;
+    for (int i = 0; i < num; i++) {
+        int len = rand() % (range-1) + 1;
+        int *arr = calloc(len, sizeof(int));
+        int *tru = calloc(len, sizeof(int));
+        for (int j = 0; j < len ; j++)
+            memcpy(arr+j, rand(), sizeof(int));
+        memcpy(tru, arr, len*sizeof(int));
+        qsort(tru, len, sizeof(int), cmp_int);
+        sort(arr, len, sizeof(int), cmp_int);
+        if (sort_test_int_arr(arr, tru, len))
+            passed++;
+        
+        free(arr);
+        free(tru);
+    }
+}
+
 int main(int argc, char **argv)
 {
     int passed = 0;
@@ -93,6 +121,7 @@ int main(int argc, char **argv)
     passed += boundary_case();
     passed += special_case();
     passed += standard_case();
+    passed += random_case(RANDOM_CASE_NUM, RANDOM_CASE_LEN);
     if (passed == total_test) {
         printf("[UNIT TEST]: Selection sort passed\n");
     }
@@ -103,6 +132,7 @@ int main(int argc, char **argv)
     passed += boundary_case();
     passed += special_case();
     passed += standard_case();
+    passed += random_case(RANDOM_CASE_NUM, RANDOM_CASE_LEN);
     if (passed == total_test) {
         printf("[UNIT TEST]: Bubble sort passed\n");
     }
@@ -113,6 +143,7 @@ int main(int argc, char **argv)
     passed += boundary_case();
     passed += special_case();
     passed += standard_case();
+    passed += random_case(RANDOM_CASE_NUM, RANDOM_CASE_LEN);
     if (passed == total_test) {
         printf("[UNIT TEST]: Merge sort passed\n");
     }
@@ -123,6 +154,7 @@ int main(int argc, char **argv)
     passed += boundary_case();
     passed += special_case();
     passed += standard_case();
+    passed += random_case(RANDOM_CASE_NUM, RANDOM_CASE_LEN);
     if (passed == total_test) {
         printf("[UNIT TEST]: In-place merge sort passed\n");
     }
