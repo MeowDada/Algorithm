@@ -32,7 +32,7 @@ static int boundary_case(void)
     int tru_2[] = {-1,1};
     total_test++;
 
-    sort(arr_2, 12, sizeof(int), cmp_int);
+    sort(arr_2, 2, sizeof(int), cmp_int);
     if(sort_test_int_arr(arr_2, tru_2, 2)==0)
         passed++;
 
