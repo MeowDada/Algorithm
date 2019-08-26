@@ -22,7 +22,7 @@ int main(int argc, char **argv)
         current = i;
         progress_update(progess, &current, &target);
         progress_bar_show_progress(bar);
-        usleep(500);
+        usleep(5000);
     }
 
     /* cleanup progress bar */
