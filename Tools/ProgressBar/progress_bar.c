@@ -4,7 +4,7 @@
 #include <math.h>
 #include "progress_bar.h"
 
-const static progress_bar_config_t default_config = {
+static progress_bar_config_t default_config = {
     .bar_length            = 10,
     .show_percentage       = true,
     .show_progess          = true,
@@ -23,7 +23,7 @@ const static progress_bar_config_t default_config = {
 static int convert_process_to_bar_length(progress_bar_t *bar, float process)
 {
     if (!bar)
-        return;
+        return 0;
     
     int bar_length = bar->config->bar_length;
 

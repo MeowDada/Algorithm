@@ -5,7 +5,7 @@
 static float eval_int(void *input, void *goal)
 {
     if (!input || !goal)
-        return;
+        return 0.0f;
     
     int   current  = *(int *)input;
     int   total    = *(int *)goal;
