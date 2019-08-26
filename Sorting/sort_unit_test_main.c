@@ -111,6 +111,8 @@ static int random_case(int num, int range)
         free(arr);
         free(tru);
     }
+
+    return passed;
 }
 
 int main(int argc, char **argv)
