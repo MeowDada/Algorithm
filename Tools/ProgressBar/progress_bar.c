@@ -93,16 +93,20 @@ void progress_bar_destroy(progress_bar_t *bar)
 
 void progress_bar_show_progress(progress_bar_t *bar)
 {
-    if (!bar)
+    if (!bar) {
+        fprintf(stderr, "[progress_bar_show_progress]: progress bar is NULL pointer\n");
         return;
+    }
     
     progress_t *progress = bar->progress;
-    if (!progress)
+    if (!progress) {
+        fprintf(stderr, "[progress_bar_show_progress]: progress is NULL pointer\n");
         return;
+    }
     
     float process = progress->eval(progress->input, progress->total);
     int process_len = convert_process_to_bar_length(bar, process);
-    int unprocess_len = bar->config->bar_length-process_len;
+    // int unprocess_len = bar->config->bar_length-process_len;
 
     /* setup progress bar */
     for(int i = 0; i < bar->config->bar_length; i++) {
