@@ -38,7 +38,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
             void *original_pos = offset(base, i, size);
             void *shifted_pos = offset(base, i+1, size);
             size_t bytes_to_shift = (r-l)*size;
-            memcpy(shifted_pos, original_pos, bytes_to_shift);
+            memmove(shifted_pos, original_pos, bytes_to_shift);
             memcpy(original_pos, elem_to_put, size);
             free(elem_to_put);
             l++;
