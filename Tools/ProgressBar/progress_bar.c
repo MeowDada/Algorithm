@@ -5,7 +5,7 @@
 #include "progress_bar.h"
 
 static progress_bar_config_t default_config = {
-    .bar_length            = 10,
+    .bar_length            = 20,
     .show_percentage       = true,
     .show_progess          = true,
     .show_time_predict     = false,
@@ -27,7 +27,7 @@ static int convert_process_to_bar_length(progress_bar_t *bar, float process)
     
     int bar_length = bar->config->bar_length;
 
-    if (fabsf(process - 1) <= 10e-9)
+    if (fabsf(process - 1) <= 10e-6)
         return bar_length;
     
     return (int)((float)bar_length*process);
