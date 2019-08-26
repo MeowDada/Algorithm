@@ -24,6 +24,9 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
     size_t l = 0;
     size_t r = 0;
 
+    if (start == end)
+        return;
+
     for (int i = start; i <= end; i++) {
         void *elem_l = offset(base, start+l, size);
         void *elem_r = offset(base, mid+1+r, size);

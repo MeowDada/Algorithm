@@ -15,6 +15,7 @@ int cmp_int(const void *ptr1, const void *ptr2)
 }
 
 /* case: length = 1 */
+/* case: length = 2 */
 static int boundary_case(void)
 {
     int passed = 0;
@@ -25,6 +26,14 @@ static int boundary_case(void)
 
     sort(arr, 1, sizeof(int), cmp_int);
     if(sort_test_int_arr(arr, tru, 1)==0)
+        passed++;
+
+    int arr_2[] = {1,-1};
+    int tru_2[] = {-1,1};
+    total_test++;
+
+    sort(arr_2, 12, sizeof(int), cmp_int);
+    if(sort_test_int_arr(arr_2, tru_2, 2)==0)
         passed++;
 
     return passed;
