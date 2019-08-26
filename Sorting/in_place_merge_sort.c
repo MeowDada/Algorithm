@@ -18,7 +18,7 @@ static inline void *copy(void *src, size_t size)
     return tmp;
 }
 
-static void merge(void *base, size_t start, size_t mid, size_t end, size_t size,
+static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size,
     int (*cmp)(const void *, const void *))
 {
     size_t l = 0;
@@ -49,14 +49,14 @@ static void merge(void *base, size_t start, size_t mid, size_t end, size_t size,
     }
 }
 
-static void merge_sort(void *base, size_t start, size_t end,
+static void _merge_sort(void *base, size_t start, size_t end,
     size_t size, int (*cmp)(const void *, const void *))
 {
     if (start < end) {
         size_t mid = start + (end-start)/2;
-        merge_sort(base, start, mid, size, cmp);
-        merge_sort(base, mid+1, end, size, cmp);
-        merge(base, start, mid, end, size, cmp);
+        _merge_sort(base, start, mid, size, cmp);
+        _merge_sort(base, mid+1, end, size, cmp);
+        _merge(base, start, mid, end, size, cmp);
     }
 }
 
