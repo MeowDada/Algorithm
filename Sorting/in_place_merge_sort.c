@@ -27,7 +27,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
     size_t r = 0;
 
 #if DEBUG_IN_PLACE_MERGE_SORT
-    printf("[BEFORE]: [");
+    printf("\033[1;35m[BEFORE]: \033[0m[");
     for(int i = start ; i <= mid; i++) {
         printf(" %d", *(int *)offset(base, i, size));
     }
@@ -61,7 +61,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
         }
     }
 #if DEBUG_IN_PLACE_MERGE_SORT
-    printf("[MERGED]: [");
+    printf("\033[1;36m[MERGED]: \033[0m[");
     for(int i = start ; i <= end; i++) {
         printf(" %d", *(int *)offset(base, i, size));
     }
@@ -83,11 +83,11 @@ static void _merge_sort(void *base, size_t start, size_t end,
 void in_place_merge_sort(void *base, size_t num, size_t size, int (*cmp)(const void *, const void *))
 {
 #if DEBUG_IN_PLACE_MERGE_SORT
-    printf("[TARGET]: [");
+    printf("\033[01;33m[TARGET]: [");
     for (int i = 0; i < num ; i++) {
         printf(" %d", *(int *)offset(base, i, size));
     }
-    printf(" ]\n");
+    printf(" ]\033[0m\n");
 #endif
     _merge_sort(base, 0, num-1, size, cmp);
 }
