@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     int current = 0;
     int target  = 100;
 
-    for(int i = 0; i < target; i++) {
+    for(int i = 0; i <= target; i++) {
         current = i;
         progress_update(progess, &current, &target);
         progress_bar_show_progress(bar);
