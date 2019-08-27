@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include "sort.h"
 
+#define DEBUG_IN_PLACE_MERGE_SORT 1
+
 static inline void *offset(void *ptr, size_t offset, size_t size)
 {
     char *tmp = (char *)ptr;
@@ -23,6 +25,18 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
 {
     size_t l = 0;
     size_t r = 0;
+
+#if DEBUG_IN_PLACE_MERGE_SORT
+    printf("[BEFORE]: [");
+    for(int i = start ; i <= mid; i++) {
+        printf(" %d", *(int *)offset(base, i, size));
+    }
+    printf(" ] [");
+    for(int i = mid+1; i <= end; i++) {
+        printf(" %d", *(int *)offset(base, i, size));
+    }
+    printf(" ]\n");
+#endif
 
     for (int i = start; i < end; i++) {
         void *elem_l = offset(base, start+l, size);
@@ -45,6 +59,17 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
             r++;
         }
     }
+#if DEBUG_IN_PLACE_MERGE_SORT
+    printf("[MERGED]: [");
+    for(int i = start ; i <= mid; i++) {
+        printf(" %d", *(int *)offset(base, i, size));
+    }
+    printf(" ] [");
+    for(int i = mid+1; i <= end; i++) {
+        printf(" %d", *(int *)offset(base, i, size));
+    }
+    printf(" ]\n");
+#endif
 }
 
 static void _merge_sort(void *base, size_t start, size_t end,
