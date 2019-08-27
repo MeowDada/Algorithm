@@ -154,6 +154,17 @@ int main(int argc, char **argv)
     passed     = 0;
     total_test = 0;
 
+    sort_method(SORT_METHOD_INSERTION_SORT);
+    passed += boundary_case();
+    passed += special_case();
+    passed += standard_case();
+    passed += random_case(RANDOM_CASE_NUM, RANDOM_CASE_LEN);
+    if (passed == total_test) {
+        printf("[UNIT TEST]: Insertion sort passed\n");
+    }
+    passed     = 0;
+    total_test = 0;
+
     sort_method(SORT_METHOD_MERGE_SORT);
     passed += boundary_case();
     passed += special_case();
