@@ -60,6 +60,9 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
             l++;
             r++;
         }
+        if ( start+l==mid+1+r )
+            break;
+
     }
 #if DEBUG_IN_PLACE_MERGE_SORT
     printf("\033[1;36m[MERGED]: \033[0m[");
