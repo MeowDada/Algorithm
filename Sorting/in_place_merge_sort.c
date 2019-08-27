@@ -39,7 +39,9 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
 #endif
 
     for (int i = start; i < end; i++) {
+#if DEBUG_IN_PLACE_MERGE_SORT
         printf("(start,mid,end,i,l,r,size) = (%ld,%ld,%ld,%d,%ld,%ld,%ld)\n", start, mid, end, i, l, r, size);
+#endif
         void *elem_l = offset(base, start+l, size);
         void *elem_r = offset(base, mid+1+r, size);
         int cmpval = (*cmp)(elem_l, elem_r);
@@ -47,6 +49,8 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
         if (cmpval == SORT_FORMER_ELEMENT_IS_SMALLER || 
             cmpval == SORT_FORMER_ELEMENT_IS_EQUAL) {
             l++;
+            if (start+l == mid+1+r)
+                break;
         }
         else {
             void *elem_to_put = copy(elem_r, size);
@@ -59,8 +63,6 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
             l++;
             r++;
         }
-        if ( start+l>mid+1+r )
-            break;
     }
 #if DEBUG_IN_PLACE_MERGE_SORT
     printf("\033[1;36m[MERGED]: \033[0m[");

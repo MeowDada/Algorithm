@@ -5,8 +5,10 @@
 #include "sort.h"
 #include "sort_unit_test.h"
 
-#define RANDOM_CASE_NUM 128
-#define RANDOM_CASE_LEN 1000 
+#define RANDOM_CASE_NUM (128)
+#define RANDOM_CASE_LEN (1000)
+#define RANDOM_NUM_MIN  (0)
+#define RANDOM_NUM_MAX  (50)
 
 static int total_test = 0;
 
@@ -110,7 +112,7 @@ static int random_case(int num, int range)
         int *arr = calloc(len, sizeof(int));
         int *tru = calloc(len, sizeof(int));
         for (int j = 0; j < len ; j++) {
-            int content = rand();
+            int content = RANDOM_NUM_MIN + rand() % (RANDOM_NUM_MAX-RANDOM_NUM_MIN);
             memcpy(arr+j, &content, sizeof(int));
         }
         memcpy(tru, arr, len*sizeof(int));
