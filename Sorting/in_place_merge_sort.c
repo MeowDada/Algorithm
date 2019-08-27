@@ -38,7 +38,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
     printf(" ]\n");
 #endif
 
-    for (int i = start; i < end; i++) {
+    for (int i = start; i <= end; i++) {
 #if DEBUG_IN_PLACE_MERGE_SORT
         printf("(start,mid,end,i,l,r,size) = (%ld,%ld,%ld,%d,%ld,%ld,%ld)\n", start, mid, end, i, l, r, size);
 #endif
