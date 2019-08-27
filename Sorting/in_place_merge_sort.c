@@ -81,5 +81,12 @@ static void _merge_sort(void *base, size_t start, size_t end,
 
 void in_place_merge_sort(void *base, size_t num, size_t size, int (*cmp)(const void *, const void *))
 {
+#if DEBUG_IN_PLACE_MERGE_SORT
+    printf("[TARGET]: [");
+    for (int i = 0; i < num ; i++) {
+        printf(" %d", *(int *)offset(base, i, size));
+    }
+    printf(" ]\n");
+#endif
     _merge_sort(base, 0, num-1, size, cmp);
 }
