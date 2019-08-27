@@ -8,10 +8,12 @@ typedef struct progress_bar_config_t {
     int   show_progess;
     int   show_time_predict;
     int   show_time_elapsed;
+    char  processing_char;
     char *processed_color;
     char  processed_char;
     char *unprocessed_color;
     char  unprocessed_char;
+    char  bar_color;
     char  bar_start_char;
     char  bar_end_char;
     char *bar_format;
