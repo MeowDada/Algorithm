@@ -39,8 +39,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
 #endif
 
     for (int i = start; i < end; i++) {
-        if (start+l==mid+1+r || mid+1+r==end)
-            break;
+        printf("(start,mid,end,i,l,r) = (%d,%d,%d,%d,%d,%d)\n", start, mid, end, i, l, r);
         void *elem_l = offset(base, start+l, size);
         void *elem_r = offset(base, mid+1+r, size);
         int cmpval = (*cmp)(elem_l, elem_r);
