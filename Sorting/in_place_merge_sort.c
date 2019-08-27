@@ -61,11 +61,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
     }
 #if DEBUG_IN_PLACE_MERGE_SORT
     printf("[MERGED]: [");
-    for(int i = start ; i <= mid; i++) {
-        printf(" %d", *(int *)offset(base, i, size));
-    }
-    printf(" ] [");
-    for(int i = mid+1; i <= end; i++) {
+    for(int i = start ; i <= end; i++) {
         printf(" %d", *(int *)offset(base, i, size));
     }
     printf(" ]\n");
