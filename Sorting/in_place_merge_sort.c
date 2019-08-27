@@ -39,7 +39,7 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
 #endif
 
     for (int i = start; i < end; i++) {
-        printf("(start,mid,end,i,l,r) = (%d,%d,%d,%d,%d,%d)\n", start, mid, end, i, l, r);
+        printf("(start,mid,end,i,l,r) = (%ld,%ld,%ld,%ld,%ld,%ld)\n", start, mid, end, i, l, r);
         void *elem_l = offset(base, start+l, size);
         void *elem_r = offset(base, mid+1+r, size);
         int cmpval = (*cmp)(elem_l, elem_r);
@@ -53,9 +53,12 @@ static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size
             void *original_pos = offset(base, i, size);
             void *shifted_pos = offset(base, i+1, size);
             size_t bytes_to_shift = ((mid+1+r)-(start+i))*size;
+            printf("AA\n");
             memmove(shifted_pos, original_pos, bytes_to_shift);
+            printf("BB\n");
             memcpy(original_pos, elem_to_put, size);
             free(elem_to_put);
+            printf("CC\n");
             l++;
             r++;
         }

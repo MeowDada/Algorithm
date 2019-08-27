@@ -41,6 +41,14 @@ static int boundary_case(void)
     if(sort_test_int_arr(arr_2, tru_2, 2)==0)
         passed++;
 
+    int arr_3[] = {0,1};
+    int tru_3[] = {0,1};
+    total_test++;
+
+    sort(arr_3, 2, sizeof(int), cmp_int);
+    if (sort_test_int_arr(arr_3, tru_3, 2)==0)
+        passed++;
+
     return passed;
 }
 
