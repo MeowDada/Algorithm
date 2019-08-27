@@ -26,21 +26,20 @@ static inline void *copy(void *ptr, size_t size)
     return tmp;
 }
 
-static inline void shift_index(void *ptr, size_t dest, size_t src, size_t size)
+static inline void shift_index(void *ptr, size_t dest, size_t src, size_t len, size_t size)
 {
-    size_t bytes_to_shift = (dest > src)? dest-src : src-dest;
-    bytes_to_shift *= size;
+    size_t bytes_to_shift = len*size;
     void *ptr_dest = offset(ptr, dest, size);
     void *ptr_src  = offset(ptr, src,  size);
     memmove(ptr_dest, ptr_src, bytes_to_shift);
 }
 
-static inline void insert_new_card_to_hands(void *base, size_t card_idx, size_t insert_pos, size_t size)
+static inline void insert_new_card_to_hands(void *base, size_t card_idx, size_t insert_pos, size_t len, size_t size)
 {
     void *new_card = offset(base, card_idx, size);
     void *new_card_dup = copy(new_card, size);
     void *ptr_insert_pos = offset(base, insert_pos, size);
-    shift_index(base, insert_pos+1, insert_pos, size);
+    shift_index(base, insert_pos+1, insert_pos, len, size);
     memcpy(ptr_insert_pos, new_card_dup, size);
     free(new_card_dup);
 }
@@ -62,7 +61,7 @@ void insertion_sort(void *base, size_t num, size_t size, int(*cmp)(const void *,
             if (cmpval == SORT_FORMER_ELEMENT_IS_SMALLER ||
                 cmpval == SORT_FORMER_ELEMENT_IS_EQUAL) {
                 insert_pos = j;
-                insert_new_card_to_hands(base, i, insert_pos, size);
+                insert_new_card_to_hands(base, i, insert_pos, i, size);
                 break;
             }
         }
