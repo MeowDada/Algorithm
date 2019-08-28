@@ -65,7 +65,7 @@ void insertion_sort(void *base, size_t num, size_t size, int(*cmp)(const void *,
             void *cmp_card = offset(base, j, size);
             int cmpval = (*cmp)(new_card, cmp_card);
             if (cmpval == SORT_FORMER_ELEMENT_IS_SMALLER) {
-                insert_new_card_to_hands(base, i, j, i, size);
+                insert_new_card_to_hands(base, i, j, i-j, size);
                 break;
             }
         }
