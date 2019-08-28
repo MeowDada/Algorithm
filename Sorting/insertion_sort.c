@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include "sort.h"
 
+#define DEBUG_INSERTION_SORT 1
+
 static inline void *offset(void *ptr, size_t off, size_t size)
 {
     char *tmp = (char *)ptr;
@@ -48,7 +50,15 @@ void insertion_sort(void *base, size_t num, size_t size, int(*cmp)(const void *,
 {
     if (num == 0 || num == 1)
         return;
-    
+
+#if DEBUG_INSERTION_SORT
+    printf("[TARGET]: [");
+    for(int i = 0; i < num; i++) {
+        printf(" %d", *(int *)offset(base, i, size));
+    }
+    printf(" ]\n");
+#endif
+
     for (size_t i = 1; i < num; i++) {
         void *new_card = offset(base, i, size);
         for (size_t j = 0; j < i; j++) {
@@ -59,5 +69,17 @@ void insertion_sort(void *base, size_t num, size_t size, int(*cmp)(const void *,
                 break;
             }
         }
+#if DEBUG_INSERTION_SORT
+        printf("[RESULT]: [");
+        for (size_t j = 0; j < num; j++) {
+            if (j < i)
+                printf(" %d", *(int *)offset(base, j, size));
+            else if (j==i)
+                printf(" %d ]", *(int *)offset(base, j, size));
+            else
+                printf(" %d", *(int *)offset(base, j, size));
+        }
+        printf(" ]\n");
+#endif
     }
 }
