@@ -54,7 +54,7 @@ static void _merge(void *base, size_t _start, size_t _mid, size_t _end, size_t s
             l++;
         }
         else {
-            void *copied = offset(base, r, size);
+            void *copied = copy(offset(base, r, size), size);
             size_t idx = r;
 
             while (idx != l) {
