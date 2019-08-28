@@ -70,16 +70,16 @@ void insertion_sort(void *base, size_t num, size_t size, int(*cmp)(const void *,
             }
         }
 #if DEBUG_INSERTION_SORT
-        printf("[RESULT]: [");
+        printf("[RESULT]: \033[01;33m[");
         for (size_t j = 0; j < num; j++) {
             if (j < i)
                 printf(" %d", *(int *)offset(base, j, size));
             else if (j==i)
-                printf(" %d ]", *(int *)offset(base, j, size));
+                printf(" %d ]\033[0m", *(int *)offset(base, j, size));
             else
                 printf(" %d", *(int *)offset(base, j, size));
         }
-        printf(" ]\n");
+        printf("\n");
 #endif
     }
 }
