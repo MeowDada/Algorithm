@@ -15,6 +15,7 @@ enum {
     SORT_METHOD_INSERTION_SORT,
     SORT_METHOD_MERGE_SORT,
     SORT_METHOD_IN_PLACE_MERGE_SORT,
+    SORT_METHOD_SHELL_SORT,
 };
 
 void sort_method(int method);
@@ -25,5 +26,6 @@ extern void selection_sort(void *, size_t, size_t, int(*)(const void *, const vo
 extern void insertion_sort(void *, size_t, size_t, int(*)(const void *, const void *));
 extern void merge_sort(void *, size_t, size_t, int(*)(const void *, const void *));
 extern void in_place_merge_sort(void *, size_t, size_t, int(*)(const void *, const void *));
+extern void shell_sort(void *, size_t, size_t, int(*)(const void *, const void *));
 
 #endif /* SORT_H */

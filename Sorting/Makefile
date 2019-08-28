@@ -5,7 +5,8 @@ CFLAGS                := -Wall -g -std=gnu99
 
 LIBSORT_PATH          := ../lib
 LIBSORT_NAME          := libsort
-LIBSORT_SRCS          := sort.c bubble_sort.c selection_sort.c merge_sort.c in_place_merge_sort.c insertion_sort.c
+LIBSORT_SRCS          := sort.c bubble_sort.c selection_sort.c merge_sort.c in_place_merge_sort.c insertion_sort.c \
+                         shell_sort.c
 LIBSORT_OBJS          := $(addsuffix .so,$(LIBSORT_NAME))
 
 PLAYGROUND_PROG       := playground
