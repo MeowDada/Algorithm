@@ -20,53 +20,59 @@ static inline void *copy(void *src, size_t size)
     return tmp;
 }
 
-static void _merge(void *base, size_t start, size_t mid, size_t end, size_t size,
+static void _merge(void *base, size_t _start, size_t _mid, size_t _end, size_t size,
     int (*cmp)(const void *, const void *))
 {
-    size_t l = 0;
-    size_t r = 0;
-
 #if DEBUG_IN_PLACE_MERGE_SORT
     printf("\033[1;35m[BEFORE]: \033[0m[");
-    for(int i = start ; i <= mid; i++) {
+    for(int i = _start ; i <= _mid; i++) {
         printf(" %d", *(int *)offset(base, i, size));
     }
     printf(" ] [");
-    for(int i = mid+1; i <= end; i++) {
+    for(int i = _mid+1; i <= _end; i++) {
         printf(" %d", *(int *)offset(base, i, size));
-    }
+    }   
     printf(" ]\n");
 #endif
+    size_t start = _start;
+    size_t mid   = _mid;
+    size_t end   = _end;
+    size_t l = start;
+    size_t r = mid+1;
 
-    for (int i = start; i <= end; i++) {
-#if DEBUG_IN_PLACE_MERGE_SORT
-        printf("(start,mid,end,i,l,r,size) = (%ld,%ld,%ld,%d,%ld,%ld,%ld)\n", start, mid, end, i, l, r, size);
-#endif
-        void *elem_l = offset(base, start+l, size);
-        void *elem_r = offset(base, mid+1+r, size);
-        int cmpval = (*cmp)(elem_l, elem_r);
-
-        if (cmpval == SORT_FORMER_ELEMENT_IS_SMALLER || 
+    int cmpval = (*cmp)(offset(base, mid, size), offset(base, r, size));
+    if (cmpval == SORT_FORMER_ELEMENT_IS_SMALLER ||
+        cmpval == SORT_FORMER_ELEMENT_IS_EQUAL)
+        return;
+    
+    while (l <= mid && r <= end) {
+        void *elem_l = offset(base, l, size);
+        void *elem_r = offset(base, r, size);
+        cmpval = (*cmp)(elem_l, elem_r);
+        if (cmpval == SORT_FORMER_ELEMENT_IS_SMALLER ||
             cmpval == SORT_FORMER_ELEMENT_IS_EQUAL) {
             l++;
-            if (start+l == mid+1+r)
-                break;
         }
         else {
-            void *elem_to_put = copy(elem_r, size);
-            void *original_pos = offset(base, i, size);
-            void *shifted_pos = offset(base, i+1, size);
-            size_t bytes_to_shift = ((mid+1+r)-i)*size;
-            memmove(shifted_pos, original_pos, bytes_to_shift);
-            memcpy(original_pos, elem_to_put, size);
-            free(elem_to_put);
+            void *copied = offset(base, r, size);
+            size_t idx = r;
+
+            while (idx != l) {
+                void *dest = offset(base, idx, size);
+                void *src  = offset(base, idx-1, size);
+                memcpy(dest, src, size);
+                idx--;
+            }
+            memcpy(elem_l, copied, size);
+            free(copied);
             l++;
+            mid++;
             r++;
         }
     }
 #if DEBUG_IN_PLACE_MERGE_SORT
     printf("\033[1;36m[MERGED]: \033[0m[");
-    for(int i = start ; i <= end; i++) {
+    for(int i = _start ; i <= _end; i++) {
         printf(" %d", *(int *)offset(base, i, size));
     }
     printf(" ]\n");
