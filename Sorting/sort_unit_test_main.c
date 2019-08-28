@@ -188,7 +188,7 @@ int main(int argc, char **argv)
     passed     = 0;
     total_test = 0;
 
-    sort_method(SORT_METHOD_IN_PLACE_MERGE_SORT);
+    sort_method(SORT_METHOD_SHELL_SORT);
     passed += boundary_case();
     passed += special_case();
     passed += standard_case();
