@@ -139,7 +139,7 @@ int main(int argc, char **argv)
     passed += standard_case();
     passed += random_case(RANDOM_CASE_NUM, RANDOM_CASE_LEN);
     if (passed == total_test) {
-        printf("[UNIT TEST]: Selection sort passed\n");
+        printf("[UNIT TEST]: selection sort passed\n");
     }
     passed     = 0;
     total_test = 0;
@@ -150,7 +150,7 @@ int main(int argc, char **argv)
     passed += standard_case();
     passed += random_case(RANDOM_CASE_NUM, RANDOM_CASE_LEN);
     if (passed == total_test) {
-        printf("[UNIT TEST]: Bubble sort passed\n");
+        printf("[UNIT TEST]: bubble sort passed\n");
     }
     passed     = 0;
     total_test = 0;
@@ -161,7 +161,7 @@ int main(int argc, char **argv)
     passed += standard_case();
     passed += random_case(RANDOM_CASE_NUM, RANDOM_CASE_LEN);
     if (passed == total_test) {
-        printf("[UNIT TEST]: Insertion sort passed\n");
+        printf("[UNIT TEST]: insertion sort passed\n");
     }
     passed     = 0;
     total_test = 0;
@@ -172,7 +172,7 @@ int main(int argc, char **argv)
     passed += standard_case();
     passed += random_case(RANDOM_CASE_NUM, RANDOM_CASE_LEN);
     if (passed == total_test) {
-        printf("[UNIT TEST]: Merge sort passed\n");
+        printf("[UNIT TEST]: merge sort passed\n");
     }
     passed     = 0;
     total_test = 0;
@@ -183,7 +183,7 @@ int main(int argc, char **argv)
     passed += standard_case();
     passed += random_case(RANDOM_CASE_NUM, RANDOM_CASE_LEN);
     if (passed == total_test) {
-        printf("[UNIT TEST]: In-place merge sort passed\n");
+        printf("[UNIT TEST]: in-place merge sort passed\n");
     }
     passed     = 0;
     total_test = 0;
@@ -194,7 +194,7 @@ int main(int argc, char **argv)
     passed += standard_case();
     passed += random_case(RANDOM_CASE_NUM, RANDOM_CASE_LEN);
     if (passed == total_test) {
-        printf("[UNIT TEST]: In-place merge sort passed\n");
+        printf("[UNIT TEST]: shell sort passed\n");
     }
     passed     = 0;
     total_test = 0;
