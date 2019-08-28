@@ -7,6 +7,10 @@
 #define GREEN  "\033[1;32m"
 #define RESET  "\033[0m"
 
+extern int sort_test_print;
+
+#define SORT_UNIT_PRINT_RESULT sort_test_print
+
 int sort_test_int_arr(int *test, int *truth, int len)
 {
     int succeed = 1;
@@ -26,6 +30,7 @@ int sort_test_int_arr(int *test, int *truth, int len)
 
     return 0;
 fail:
+#if SORT_UNIT_PRINT_RESULT
     printf("[input]:");
     for (int i = 0; i < len; i++) {
         if(flag[i]) {
@@ -45,7 +50,7 @@ fail:
         }
     }
     printf("\n");
-
+#endif
     free(flag);
 
     return -1;

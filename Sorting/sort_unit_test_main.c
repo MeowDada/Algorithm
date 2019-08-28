@@ -11,6 +11,7 @@
 #define RANDOM_NUM_MAX  (50)
 
 static int total_test = 0;
+int sort_test_print   = 0;
 
 /* descending oreder */
 int cmp_int(const void *ptr1, const void *ptr2)
