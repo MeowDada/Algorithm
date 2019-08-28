@@ -49,19 +49,13 @@ void insertion_sort(void *base, size_t num, size_t size, int(*cmp)(const void *,
     if (num == 0 || num == 1)
         return;
     
-    /* pick the unsorted new card */
     for (size_t i = 1; i < num; i++) {
         void *new_card = offset(base, i, size);
-        void *smallest_card = offset(base, 0, size);
-        size_t insert_pos = 0;
-        /* check current hands */
-        for(size_t j = 0; j < i; j++) {
-            void *compared_card = offset(base, j, size);
-            int cmpval = (*cmp)(new_card, compared_card);
-            if (cmpval == SORT_FORMER_ELEMENT_IS_SMALLER ||
-                cmpval == SORT_FORMER_ELEMENT_IS_EQUAL) {
-                insert_pos = j;
-                insert_new_card_to_hands(base, i, insert_pos, i, size);
+        for (size_t j = 0; j < i; j++) {
+            void *cmp_card = offset(base, j, size);
+            int cmpval = (*cmp)(new_card, cmp_card);
+            if (cmpval == SORT_FORMER_ELEMENT_IS_SMALLER) {
+                insert_new_card_to_hands(base, i, j, i, size);
                 break;
             }
         }
