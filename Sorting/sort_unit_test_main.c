@@ -5,7 +5,7 @@
 #include "sort.h"
 #include "sort_unit_test.h"
 
-#define RANDOM_CASE_NUM (0)
+#define RANDOM_CASE_NUM (128)
 #define RANDOM_CASE_LEN (1000)
 #define RANDOM_NUM_MIN  (0)
 #define RANDOM_NUM_MAX  (50)

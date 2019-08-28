@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include "sort.h"
 
-#define DEBUG_INSERTION_SORT 1
+#define DEBUG_INSERTION_SORT 0
 
 static inline void *offset(void *ptr, size_t off, size_t size)
 {
