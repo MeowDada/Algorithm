@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include "sort.h"
 
-#define DEBUG_IN_PLACE_MERGE_SORT 0
+#define DEBUG_IN_PLACE_MERGE_SORT 1
 
 static inline void *offset(void *ptr, size_t offset, size_t size)
 {
