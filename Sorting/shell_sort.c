@@ -32,8 +32,10 @@ void shell_sort(void *base, size_t num, size_t size, int(*cmp)(const void *, con
         for (size_t i = gap; i < num; i++) {
             void *temp = copy(offset(base, i, size), size);
             size_t j = i;
-            while (j >= gap && (*cmp)(offset(base, j, size), temp)==SORT_FORMER_ELEMENT_IS_LARGER)
+            while (j >= gap && (*cmp)(offset(base, j-gap, size), temp)==SORT_FORMER_ELEMENT_IS_LARGER) {
                 memcpy(offset(base, j, size), offset(base, j-gap, size), size);
+                j -= gap;
+            }
             memcpy(offset(base, j, size), temp, size);
             free(temp);
         }
